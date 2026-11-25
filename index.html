@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BFF CRM | 客户360 · 做单约定 V4.2</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#202b3d;background:#f4f6f9;font:14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}button,a,summary,select{cursor:pointer}button,input,select,textarea{font:inherit;color:inherit}button,a{white-space:nowrap}button{background:#fff;border:1px solid #d7dfe9;border-radius:6px;padding:6px 12px}button:hover:not(:disabled){border-color:#1677ff;color:#095dc9}button.primary{background:#1677ff;border-color:#1677ff;color:white}button.primary:hover:not(:disabled){background:#095dc9;color:white}button:disabled{opacity:.5;cursor:not-allowed}:focus-visible{outline:2px solid #1677ff;outline-offset:3px}a{color:#095dc9;text-decoration:none}h1,h2,h3,p{margin:0}h1{font-size:26px}h2{font-size:18px}h3{font-size:15px}.muted,small{color:#58677b}.line{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.spread{justify-content:space-between}.top{background:#111e35;color:#fff;padding:12px max(20px,calc((100vw - 1360px)/2));min-height:56px}.brand{background:#1677ff;padding:3px 8px;border-radius:5px;font-weight:750}.top select{border:1px solid #6a7a95;background:#203150;border-radius:5px;padding:4px 8px;color:white}main{max-width:1400px;margin:auto;padding:20px}.card,.anchors{background:#fff;border:1px solid #e0e6ee;border-radius:8px}.card{padding:18px;margin:14px 0}.identity{padding:18px 20px}.identity .context{display:flex;gap:16px;margin-top:7px;flex-wrap:wrap}.identity .stats{display:flex;gap:24px}.stat{border-left:1px solid #e0e6ee;padding-left:18px}.stat b{display:block;font-size:19px}.anchors{position:sticky;top:0;z-index:2;padding:9px 14px;box-shadow:0 2px 6px #23355009}.anchors a{padding:6px 10px;border-radius:5px}.anchors a[aria-current=true]{background:#edf5ff;font-weight:650}section[id]{scroll-margin-top:65px}.tag{display:inline-block;padding:2px 8px;background:#f4f6f9;border:1px solid #e2e7ef;border-radius:5px;font-size:12px}.tablewrap{overflow:auto;margin-top:12px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:13px}th,td{padding:10px 9px;text-align:left;border-bottom:1px solid #ebeff4}th{background:#f5f7fa;font-weight:600}td small{display:block}tr:last-child td{border-bottom:0}.actions{display:inline-flex;align-items:center;gap:8px}.actions button{padding:2px 5px;border:0;color:#095dc9}.actions button:hover{background:#eef5ff}.metrics{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.meter{width:104px;height:6px;appearance:none;border:none;border-radius:6px;overflow:hidden;background:#e9eef5}.meter::-webkit-progress-bar{background:#e9eef5}.meter::-webkit-progress-value{background:#1677ff}.meter::-moz-progress-bar{background:#1677ff}.rule{font-size:13px;color:#58677b;margin:8px 0 14px}.agreement{margin-top:16px}.shopgroup{border-top:1px solid #e4e9f0;padding-top:16px;margin-top:17px}.record{font-size:12px;color:#58677b}.module{border:1px solid #e0e6ee;border-radius:6px;margin-top:8px}.module summary{list-style:none;display:flex;align-items:center;gap:9px;padding:11px 13px;font-weight:600}.module summary::-webkit-details-marker{display:none}.module summary::after{content:"";width:7px;height:7px;border:solid #6c7c91;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);margin:0 3px 4px}.module[open] summary::after{transform:rotate(225deg);margin-bottom:-3px}.module summary small{margin-left:auto;font-weight:400}.values{margin:0;padding:10px 13px 13px;border-top:1px solid #ebeff4;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.values dt{color:#58677b;font-size:12px}.values dd{margin:2px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.empty{padding:12px 13px;color:#58677b}.demo{margin-top:10px;color:#58677b;font-size:12px}
+dialog{border:0;border-radius:11px;padding:0;width:min(1100px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);box-shadow:0 18px 60px #17264455}dialog::backdrop{background:#15254177}dialog[open]{display:flex;flex-direction:column}body.modal-open{overflow:hidden}.dlg-head,.dlg-foot{padding:14px 20px;background:white}.dlg-head{border-bottom:1px solid #e1e7ef}.dlg-foot{border-top:1px solid #e1e7ef}.dlg-body{display:grid;grid-template-columns:175px minmax(0,1fr);min-height:0;background:#f5f7fa}.dlg-nav{background:white;padding:12px 8px;border-right:1px solid #e1e7ef;overflow:auto}.dlg-nav button{display:block;width:100%;text-align:left;border:0;margin:3px 0;white-space:normal}.dlg-nav button[aria-current=true]{background:#edf5ff;color:#095dc9;font-weight:650}.dlg-scroll{overflow:auto;min-height:0;padding:12px 16px;scroll-padding-top:12px}.form-section{background:white;border:1px solid #e0e6ee;border-radius:7px;padding:14px;margin-bottom:12px}.form-section h3{margin-bottom:11px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 15px}.field{display:grid;gap:4px;align-content:start}.field.wide{grid-column:1/-1}.field input,.field select,.field textarea{background:white;border:1px solid #ccd6e2;border-radius:5px;padding:7px 9px;min-width:0;width:100%;opacity:1}.field textarea{resize:vertical}.field .missing{background:#fff4e5;border-color:#efcea7}.field input:disabled,.field select:disabled,.field textarea:disabled{color:#36455b;-webkit-text-fill-color:#36455b}.field small:empty{display:none}.sku-row{display:grid;grid-template-columns:1fr 1.4fr 1.5fr auto;gap:7px;margin:3px 0}.sku-row button{padding:3px 7px}.note{color:#58677b;font-size:12px;margin-top:6px}.error{color:#a53618;font-size:13px;min-height:0}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;background:#172642;color:white;border-radius:6px;padding:9px 15px}.toast:empty{display:none}@media(max-width:700px){main{padding:10px}.card{padding:12px} .dlg-body{grid-template-columns:100px minmax(0,1fr)}.fields,.values{grid-template-columns:1fr}.sku-row{grid-template-columns:1fr 1fr}.dlg-head,.dlg-foot,.dlg-scroll{padding:10px}.top{padding:10px}.meter{width:70px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}[hidden]{display:none!important}
+body{--rail:64px;--chrome:76px;background:#f5f6fa;color:#292f39;font-size:13px}
+.crm-rail{position:fixed;inset:0 auto 0 0;width:var(--rail);background:#fff;border-right:1px solid #e7e9ed;z-index:5;text-align:center;color:#505761}.crm-rail>div:not(.crm-brand){height:60px;display:grid;justify-items:center;align-content:center;gap:4px;font-size:11px}.crm-rail .current{color:#1677ff;background:#f3f8ff}.crm-rail svg{width:17px;height:17px}.crm-brand{height:17px;width:26px;margin:16px auto 18px;background:linear-gradient(145deg,#c277e4 18%,#736cf4 57%,#13caf3 58%,#27b6ed 85%);transform:skew(-15deg);border-radius:8px 9px 6px 6px}
+.crm-head,.worktabs{position:fixed;left:var(--rail);right:0;z-index:4;background:#fff;border-bottom:1px solid #e5e8ed}.crm-head{height:44px;top:0;padding:0 14px;color:#46505c;font-size:12px}.crm-head select{border:1px solid #e2e6eb;border-radius:4px;background:#fff;padding:3px 5px}.worktabs{height:32px;top:44px;display:flex;align-items:end;padding-left:10px;gap:2px;white-space:nowrap;overflow:hidden;font-size:12px}.worktabs span{padding:6px 9px 5px}.worktabs small{margin-left:8px}.worktabs .current{background:#e6f0ff;color:#1265d1;border-radius:6px 6px 0 0}
+main{margin:var(--chrome) 0 0 var(--rail);max-width:none;padding:11px 11px 24px}.crm-dimension,.crm-profile{background:#fff;border:1px solid #dce4ef;border-radius:6px;margin-bottom:10px}.crm-dimension{padding:8px 13px}.seg{display:flex}.seg button{border-radius:0;padding:4px 12px}.seg button:first-child{border-radius:4px 0 0 4px}.seg button:last-child{border-radius:0 4px 4px 0}.seg button[aria-pressed=true]{background:#1677ff;border-color:#1677ff;color:#fff}
+.crm-profile{padding:15px 16px 13px}.crm-profile h1{font-size:20px;margin-bottom:7px}.crm-profile dl,.context-data{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;border-top:1px solid #e6ebf1;padding-top:10px;margin:11px 0 0}.crm-profile dt,.context-data dt{color:#637083;font-size:12px}.crm-profile dd,.context-data dd{margin:2px 0 0;font-weight:600}.crm-tabs{display:flex;overflow:auto;border-bottom:1px solid #e7ebf1;margin-bottom:9px;gap:10px}.crm-tabs button{background:transparent;border:0;border-bottom:2px solid transparent;border-radius:0;padding:8px 12px;color:#526176}.crm-tabs button[aria-selected=true]{color:#1677ff;border-bottom-color:#1677ff}
+.anchors{top:var(--chrome);border-radius:5px;padding:5px 8px;gap:6px;box-shadow:none}.anchors a{padding:4px 8px}.anchors a span{margin-left:5px;font-size:12px;font-weight:400;color:#536275}section[id]{scroll-margin-top:calc(var(--chrome) + 42px)}.card{margin:9px 0;padding:14px 15px;border-radius:6px}.tablewrap{margin:0}table{min-width:860px;font-size:12px}th,td{padding:10px 9px;text-align:center;border-bottom:1px solid #edf0f3}th{background:#f7f7f8}td:first-child,td:nth-child(6){text-align:left}td small{font-size:11px;margin-top:2px}tbody tr:hover{background:#fafafa}.platform-badge{display:inline-grid;place-items:center;width:14px;height:14px;font-size:10px;color:white;background:#78a941;border-radius:3px;margin-right:4px}.tag{font-size:11px;padding:1px 5px;border:0;border-radius:3px}.tag.live,.tag.complete{color:#367d28;background:#f0fae9}.tag.partial{color:#895918;background:#fff4e5}
+.actions{gap:2px}.actions .icon-btn{display:inline-grid;place-items:center;color:#58677b;width:26px;height:25px;padding:4px;border:1px solid transparent}.actions .icon-btn:hover{color:#1677ff}.icon-btn svg{width:15px;height:15px}.agreement-cell{display:inline-grid;grid-template-columns:46px 54px;align-items:center;gap:7px;white-space:nowrap}.agreement-cell .tag{text-align:center}.actions .empty-edit{width:26px;height:25px}.shopgroup{margin-top:12px}.shop-cards{display:grid;gap:12px;margin-top:8px}.shop-card{background:#fff;border:1px solid #e4e7eb;border-radius:6px;padding:10px 12px}.agreement{margin-top:10px}.module{margin-top:6px}.module summary{padding:8px 10px}.rule{margin:5px 0 9px}.record{font-size:11px}.dlg-body{flex:1 1 auto}.dlg-scroll{scroll-behavior:auto}.sku-row{grid-template-columns:1.25fr .75fr 1.55fr 1.3fr auto}.attachment-list{display:grid;gap:4px}.attachment-row{display:flex;align-items:center;gap:8px;overflow-wrap:anywhere}.attachment-row button{padding:2px 6px}.attachment-row a{white-space:normal}.file-control{max-width:340px}.icon-stroke{fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){body{--rail:47px}main{padding:8px}.crm-head{padding:0 7px;font-size:11px}.crm-tabs{gap:0}.crm-profile dl,.context-data{grid-template-columns:repeat(2,minmax(0,1fr))}.sku-row{grid-template-columns:1fr 1fr}}
+.agreement-col{width:10%;min-width:146px}.agreement-cell{grid-template-columns:83px 54px}.apply-all{display:inline-flex;align-items:center;white-space:nowrap;gap:4px}.apply-all input{margin:0}
+dialog.drawer{position:fixed;inset:0 0 0 auto;margin:0;width:min(1100px,100vw);height:100dvh;max-height:100dvh;border-radius:0}.drawer .dlg-scroll{padding:14px 16px}.drawer .values{grid-template-columns:repeat(2,minmax(0,1fr))}.drawer .module{background:#fff}
+.agreement-heading{display:inline-flex;gap:7px;align-items:center;white-space:nowrap}.agreement-heading small{font-weight:400}.mode-edit{margin-left:auto}.recommend-tag{display:inline-block;margin-left:4px;padding:1px 5px;border:1px solid #efcea7;border-radius:4px;background:#fff4e5;color:#895918;font-size:11px;line-height:1.35}.readonly-values{margin:0}.readonly-values dt{font-size:12px;color:#58677b}.readonly-values dd{margin:2px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.readonly-values ul{margin:0;padding-left:18px}.dlg-body.no-modules{grid-template-columns:minmax(0,1fr)}.choices{display:flex;flex-wrap:wrap;gap:6px}.field .choice{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border:1px solid #d7dfe9;border-radius:5px;background:#fff;cursor:pointer}.field .choice:has(:checked){border-color:#1677ff;color:#095dc9}.field .choice input{width:auto;margin:0;accent-color:#1677ff}.choices.missing .choice{background:#fff4e5;border-color:#efcea7}.field.wide{min-width:0}.stock-card{margin:0 0 9px;padding:12px;border:1px solid #e0e6ee;border-radius:6px;min-width:0}.stock-card .fields{margin-top:9px}.stock-card .choice-row{grid-column:1/-1}.stock-card .scope-inputs{display:flex;gap:7px}.stock-card .scope-inputs select:first-child{max-width:90px}.choices [data-clear-choice]{display:none;padding:3px 6px;border-color:transparent;color:#58677b}.choices:has(input:checked) [data-clear-choice]{display:inline-block}.stock-card h4{margin:0}.rule-list{display:grid;gap:8px}.rule-list .readonly-values{margin-top:8px}
+dialog{position:fixed;inset:0 0 0 42vw;margin:0;width:auto;max-width:none;height:100dvh;max-height:100dvh;border:0;border-left:1px solid #e6e8eb;border-radius:0;padding:0;background:#fff;box-shadow:none;overflow:hidden}
+dialog::backdrop{background:rgba(29,33,41,.08)}
+dialog[open]{display:flex;flex-direction:column}
+.dlg-head,.dlg-foot{flex:0 0 auto;background:#fff}
+.dlg-head{padding:16px 24px 0;border-bottom:0}
+.dlg-head h2{font-size:16px;font-weight:600;color:#1d2129}
+.head-actions{display:flex;align-items:center;gap:8px}
+#close{border:0;background:transparent;color:#86909c;font-size:20px;line-height:1;padding:2px 6px;border-radius:4px}
+#close:hover{border-color:transparent;background:#f2f3f5;color:#1d2129}
+#modalHint{margin:4px 0 0;min-height:0}
+#modalHint:empty{display:none}
+.shop-brief{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px 16px;margin:14px 0 0;padding:0 0 14px;border-bottom:1px solid #f2f3f5}
+.shop-brief dt{color:#86909c;font-size:12px;font-weight:400}
+.shop-brief dd{margin:6px 0 0;min-height:32px;padding:5px 10px;background:#f7f8fa;border:1px solid #e5e6eb;border-radius:4px;color:#1d2129;font-weight:500;overflow-wrap:anywhere}
+#agreementForm{flex:1 1 auto;min-height:0;overflow:auto;padding:4px 24px 20px;background:#fff}
+.form-section{background:transparent;border:0;border-radius:0;box-shadow:none;padding:16px 0 4px;margin:0}
+.form-section + .form-section{border-top:1px solid #f2f3f5;margin-top:8px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}
+.section-head h3,.form-section h3{margin:0;font-size:14px;font-weight:600;color:#1d2129}
+.section-head h3 small,.form-section h3 small{margin-left:8px;font-weight:400;color:#a9aeb8}
+.fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;align-items:start}
+.field{gap:6px}
+.field > .label{font-size:12px;line-height:20px;color:#86909c;font-weight:400}
+.span-1,.span-2{grid-column:span 1}.span-4{grid-column:1 / -1}
+.field input,.field select,.field textarea,.scope-inputs input,.scope-inputs select,[data-library] select{height:32px;border:1px solid #e5e6eb;border-radius:4px;background:#fff;padding:0 10px}
+.field textarea{height:auto;min-height:72px;padding:6px 10px;line-height:1.5}
+.field input::placeholder,.field textarea::placeholder{color:#c0c4cc}
+.field .choice{border:1px solid #e5e6eb;background:#fff;color:#1d2129;border-radius:4px;padding:4px 10px;line-height:22px}
+.field .choice:has(:checked){border-color:#1677ff;background:#f0f7ff;color:#1677ff}
+.choices [data-clear-choice]{border:0;background:transparent;color:#a9aeb8;padding:4px 6px}
+.choices [data-clear-choice]:hover{border-color:transparent;color:#1677ff;background:transparent}
+.recommend-tag{display:inline;margin-left:6px;padding:0;border:0;border-radius:0;background:none;color:#a9aeb8;font-size:12px;font-weight:400;line-height:inherit}
+.field .missing,.choices.missing .choice{background:#fff;border-color:#e5e6eb;color:inherit}
+.field small{color:#a9aeb8}
+.sub-field{display:grid;gap:6px;margin-top:8px}
+.stock-card .scope-inputs{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px;margin-top:8px;max-width:calc(50% - 12px)}
+.stock-card .scope-inputs select:first-child{max-width:none;width:96px}
+[data-library]{margin-top:8px;max-width:calc(50% - 12px)}
+.stock-card{grid-column:1 / -1;margin:0 0 12px;padding:12px 14px 14px;border:1px solid #f0f1f3;border-radius:6px;background:#fafbfc;box-shadow:none}
+.stock-card h4{font-size:13px;font-weight:600}
+.stock-card .fields{margin-top:12px}
+button.text-btn,button.text-danger{border:0;background:transparent;padding:4px 0}
+button.text-btn{color:#1677ff}
+button.text-danger{color:#f53f3f}
+button.text-btn:hover,button.text-danger:hover{border-color:transparent;background:transparent;color:#1677ff}
+button.text-danger:hover{color:#f53f3f}
+.upload-btn{display:inline-flex;align-items:center;width:fit-content;height:32px;padding:0 12px;border:1px dashed #d9d9d9;border-radius:4px;background:#fff;color:#4e5969}
+.upload-btn:hover{border-color:#1677ff;color:#1677ff}
+.upload-btn input{display:none}
+.readonly-value{min-height:32px;padding:5px 10px;background:#f7f8fa;border:1px solid #e5e6eb;border-radius:4px;color:#1d2129;white-space:pre-wrap;overflow-wrap:anywhere}
+.readonly-value ul{margin:0;padding-left:18px}
+.dlg-foot{padding:12px 24px;border-top:1px solid #f2f3f5}
+.dlg-foot button{height:32px;border-radius:4px;padding:0 14px}
+.empty{padding:28px 0;color:#86909c}
+@media(max-width:1100px){.scope-inputs,[data-library]{max-width:100%}}
+@media(max-width:760px){dialog{left:0;width:100vw;max-width:100vw}dialog .fields,.shop-brief{grid-template-columns:1fr}.span-1,.span-2,.span-4{grid-column:auto}.dlg-head,#agreementForm,.dlg-foot{padding-left:14px;padding-right:14px}}
+</style>
+<aside class="crm-rail" aria-label="系统导航">
+  <div class="crm-brand" aria-label="BFF"></div>
+  <div><span data-icon="grid"></span>工作台</div><div class="current"><span data-icon="crm"></span>CRM</div>
+  <div><span data-icon="box"></span>Oms</div><div><span data-icon="fund"></span>Fund</div><div><span data-icon="tune"></span>BPS</div>
+</aside>
+<header class="crm-head line spread">
+  <div>CRM　›　客户治理　›　客户360 · 虚构数据演示</div>
+  <label>演示权限 <select id="role"><option value="delivery">交付人员 A · 可维护</option><option value="viewer">授权人员 · 仅查看</option></select></label>
+</header>
+<div class="worktabs" aria-label="工作页签"><span>▦ 工作台 <small>×</small></span><span>⌂ 全部客户 <small>×</small></span><span>↪ 客户360 <small>×</small></span><span class="current" aria-current="page">↪ 客户360 <small>×</small></span></div>
+<main>
+  <div class="crm-dimension line">当前维度 <div class="seg" aria-label="当前维度"><button data-dimension="global" aria-pressed="false">全局客户</button><button data-dimension="id" aria-pressed="true">客户ID</button></div></div>
+  <div class="crm-profile">
+    <h1 id="profileName">演示客户</h1><p id="profileIds"><small>客户ID</small> <b>90001</b>　 <small>所属全局客户</small> <b>g_demo_001</b></p>
+    <dl><div><dt>客户编码</dt><dd>DEMO-001</dd></div><div><dt>业务经理</dt><dd>演示业务经理</dd></div><div><dt>业务组</dt><dd>演示业务组</dd></div><div><dt>业务助理</dt><dd>—</dd></div></dl>
+  </div>
+  <nav id="crmTabs" class="crm-tabs" role="tablist" aria-label="客户360"></nav>
+  <div id="crmContext" class="card" role="tabpanel" hidden></div>
+  <div id="fulfillment" role="tabpanel" aria-labelledby="crm-tab-6">
+  <section id="shops" class="card" aria-labelledby="shopTitle">
+    <h2 id="shopTitle" class="sr-only">店铺信息</h2>
+    <div class="tablewrap"><table><thead><tr><th>店铺名称/ID</th><th>自定义店铺名</th><th>联系方式</th><th>平台</th><th>状态</th><th>所属商户</th><th>创建时间</th><th>销售</th><th class="agreement-col"><span class="agreement-heading">做单约定 <small id="customerCompletion" title="同一客户下启用店铺的 8 项建议字段合并去重统计">客户已完善 · 0%</small></span></th></tr></thead><tbody id="shopRows"></tbody></table></div>
+  </section>
+  </div>
+</main>
+<dialog id="dialog" aria-labelledby="modalTitle">
+  <div class="dlg-head">
+    <div class="line spread"><h2 id="modalTitle">做单约定</h2><div class="head-actions"><button id="editMode" class="primary mode-edit" type="button" hidden>编辑</button><button id="close" type="button" aria-label="关闭">×</button></div></div>
+    <div id="modalHint" class="note"></div>
+    <dl id="shopBrief" class="shop-brief"></dl>
+  </div>
+  <form id="agreementForm" class="dlg-scroll"></form>
+  <div class="dlg-foot line spread"><div><div id="modalRecord" class="record"></div><div id="formError" class="error" role="alert"></div></div><div class="line"><label id="applyAllWrap" class="apply-all" title="将当前已填写内容同步给同一商户下的其他启用店铺"><input id="applyAll" type="checkbox"> 应用所有店铺</label><button id="cancel">取消</button><button id="save" class="primary" type="submit" form="agreementForm">保存约定</button></div></div>
+  <div id="toast" class="toast" role="status"></div>
+</dialog>
+
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const modules = [
+  {name:"做单节奏",fields:[
+    ["channel","沟通渠道",["WA 群聊","WA 私聊","邮件","飞书","其他"],true],
+    ["trigger","触发方式",["按我司默认节奏","客户通知后做","有单即做（时效要求高）","到固定时间做","订单达到约定条件后做"],true],
+    ["cadence","固定节奏",["每日","每周 N 次","固定星期","工作日","每周","按需","不设固定节奏"],true],
+    ["hours","可做单时段","hours",true],
+    ["confirm","是否需客户确认",["需要确认","无需确认","特殊情况需确认"],true],
+    ["zone","时区","text",false,"例如 UTC+8"],
+    ["holiday","节假日安排",["顺延工作日","照常","按客户通知"],false],
+    ["rhythmNote","做单补充说明","area",false]
+  ]},
+  {name:"备货与付款",fields:[
+    ["rules","商品备货约定（SKU / SPU）","rules",false],
+    ["credit","账期与欠费（交付执行约定）","area",false,"例如 欠费时的做单安排"]
+  ]},
+  {name:"物流与发货",fields:[
+    ["shippingNote","物流与发货备注","area",false],
+    ["shippingFiles","物流与发货附件","files",false]
+  ]},
+  {name:"其他备注",fields:[["note","其他约定备注","area",false],["noteFiles","其他约定附件","files",false]]}
+];
+const shops = [
+  ["91001","demo-shop-1","示例店铺 1","—","Bps","2025-01-01","销售 A"],
+  ["91002","demo-shop-2","示例店铺 2","—","Bps","2025-01-02","销售 A"],
+  ["91003","demo-shop-3","示例店铺 3","—","Bps","2025-01-03","销售 B"],
+  ["91004","demo-shop-4","示例店铺 4","—","Bps","2025-01-04","销售 B"],
+  ["91005","demo-shop-5","示例店铺 5","—","Bps","2025-01-05","销售 A"],
+  ["91006","demo-shop-6","示例店铺 6","—","Bps","2025-01-06","销售 B"],
+  ["91007","demo-shop-7","示例店铺 7","—","Bps","2025-01-07","—"]
+];
+const products = [
+  ["SKU","DEMO-SKU-1001","帆布收纳袋"],["SKU","DEMO-SKU-1002","旅行收纳盒"],
+  ["SKU","DEMO-SKU-1003","便携水杯"],["SPU","DEMO-SPU-2001","收纳用品"],["SPU","DEMO-SPU-2002","杯具"]
+];
+const attachmentLimit = 2 * 1024 * 1024;
+const iconPaths = {
+  view:'<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/>',
+  edit:'<path d="m4 15-1 6 6-1L20 9a2.8 2.8 0 0 0-4-4ZM14 7l4 4"/>',
+  grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  crm:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M6 15c1-2 5-2 6 0m3-5h3m-3 4h3"/>',
+  box:'<rect x="4" y="4" width="16" height="16" rx="1"/><path d="M8 9h8m-8 4h5"/>',
+  fund:'<circle cx="12" cy="12" r="9"/><path d="M15 8h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9m3-10v12"/>',
+  tune:'<path d="M5 3v4m0 5v9m7-18v9m0 5v4m7-18v3m0 5v10M3 7h4v5H3zm7 5h4v5h-4zm7-6h4v5h-4z"/>'
+};
+const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true" class="icon-stroke">${iconPaths[name]}</svg>`;
+const merchantId = "90001";
+const businessType = "BPS";
+const recordKey = id => [merchantId,id,businessType].join(":");
+const initial = {
+  merchantStatus:"active",shopStatus:{"91007":"disabled"},records:{
+    [recordKey("91002")]:{values:{trigger:"客户通知后做",stock:"客户自备货"},who:"交付人员 B",when:"2025-01-08 14:20"},
+    [recordKey("91004")]:{values:{dispatch:"示例：确认后两个工作日发货"},who:"交付人员 A",when:"2025-01-08 15:30"},
+    [recordKey("91007")]:{values:{payment:"预付",packing:"示例：使用标准纸箱。"},who:"交付人员 B",when:"2025-01-08 11:10"}
+  }
+};
+const key = "bff-public-demo-customer360-agreement-v4.2";
+let state = structuredClone(initial);
+try {
+  const stored = localStorage.getItem(key);
+  if (stored) state = JSON.parse(stored);
+  else {
+    const fromV41 = localStorage.getItem("bff-public-demo-customer360-agreement-v4.1");
+    const fromV4 = localStorage.getItem("bff-public-demo-customer360-agreement-v4");
+    if (fromV41) state = JSON.parse(fromV41);
+    else if (fromV4) {
+      const previous = JSON.parse(fromV4);
+      state.merchantStatus = previous.customerStatus || "active";
+      state.shopStatus = {...state.shopStatus,...previous.shopStatus};
+      for (const [id] of shops) {
+        if (previous.records?.[id]) state.records[recordKey(id)] = previous.records[id];
+      }
+    }
+  }
+} catch {}
+const fields = modules.flatMap(module => module.fields);
+const suggested = [...fields.filter(field=>field[3]).map(field=>field[0]),"scope","stock","payment"];
+const scopeOptions=[["manual","手工输入 SKU / SPU"],["library","从产品库选择"],["all","全店铺"]];
+const stockOptions=["演示供应商备货","代客户备货","客户自备货","我司备货","按单采购","混合备货","无需备货"];
+const paymentOptions=["公司买货","提前全额付款","分期按比例付","分批随履约单付","客户买货","预付","按单付款","余额支付","月结","其他"];
+const ruleOptions=[
+  ["method","备货方式",stockOptions,true],
+  ["frequency","备货频率",["无库存时","固定周期","等客户通知"],false],
+  ["payment","付款方式",paymentOptions,true],
+  ["shortage","缺货规则",["货齐再发","按次指示","暂停做单"],false]
+];
+const statusLabels = {active:"启用",disabled:"停用",deleted:"已删除"};
+const esc = value => String(value ?? "").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const valid = value => Array.isArray(value) ? value.length > 0 : typeof value === "string" && value.trim() !== "";
+const hasContent = values => Object.values(values).some(valid);
+function getRecord(id) {
+  const record=state.records[recordKey(id)]||{values:{}};
+  const {scope,stock,payment,rules,carrier,dispatch,packing,...values}=record.values;
+  const legacyShipping=[["物流渠道",carrier],["发货时效",dispatch],["打包要求",packing]]
+    .filter(([,value])=>valid(value)).map(([label,value])=>label+"："+value);
+  if (legacyShipping.length) {
+    values.shippingNote=[values.shippingNote,...legacyShipping].filter(valid).join("\n");
+  }
+  const cards=[...(rules||[])];
+  if (scope||stock||payment) {
+    cards.unshift({source:scope==="全店"?"all":scope?"manual":"",method:stock||"",payment:payment||""});
+  }
+  if(cards.length) values.rules=cards.map(({source="",type="",code="",method="",payment="",frequency="",frequencyNote="",shortage="",note=""})=>({source,type:code?type:"",code,method,payment,frequency,frequencyNote,shortage,note}));
+  return {...record,values};
+}
+const shopInfo = id => shops.find(shop => shop[0] === id);
+const shopStatus = id => state.shopStatus[id] || "active";
+const canEdit = id => $("role").value === "delivery" && state.merchantStatus === "active" && shopStatus(id) === "active";
+function covered(values, field) {
+  if (field==="scope") return values.rules?.some(rule=>rule.source==="all"||valid(rule.code))||false;
+  if (field==="stock"||field==="payment") return values.rules?.some(rule=>valid(rule[field==="stock"?"method":"payment"]))||false;
+  return valid(values[field]);
+}
+function summarize(collections) {
+  const count = suggested.filter(field=>collections.some(values=>covered(values,field))).length;
+  return {count,percent:count*100/suggested.length};
+}
+function statusTag({count,percent}) {
+  const tone=count===suggested.length?"complete":count?"partial":"";
+  return `<span class="tag ${tone}">已完善 · ${percent}%</span>`;
+}
+function persist() {
+  try { localStorage.setItem(key,JSON.stringify(state)); return true; }
+  catch { return false; }
+}
+function metricHtml(m, title) {
+  return `<div class="metrics"><span class="tag">${title} · 已完善 · ${m.percent}%</span><progress class="meter" aria-label="${title}" max="${suggested.length}" value="${m.count}"></progress><small>${m.count}/${suggested.length} 项已完善</small></div>`;
+}
+function history(id) {
+  const {who,when}=getRecord(id);
+  return `最新修改人　${esc(who || "—")}　 ·　 最新修改时间　${esc(when || "—")}`;
+}
+function actions(id) {
+  const filled = hasContent(getRecord(id).values);
+  const target = shopInfo(id)[1];
+  const action = (mode,label) => `<button type="button" class="icon-btn" data-open="${id}" data-mode="${mode}" title="${label}" aria-label="${label} · ${target}">${icon(mode)}</button>`;
+  return `<span class="actions">${canEdit(id)?action("edit",filled?"编辑约定":"填写约定"):'<span class="empty-edit" aria-hidden="true"></span>'}${action("view","查看约定")}</span>`;
+}
+function attachmentLink(file) {
+  return `<a href="${esc(file.url)}" download="${esc(file.name)}">${esc(file.name)}</a>`;
+}
+function render() {
+  const active = shops.filter(([id])=>shopStatus(id)==="active");
+  const total = summarize(active.map(([id])=>getRecord(id).values));
+  $("customerCompletion").textContent=`客户已完善 · ${total.percent}%`;
+  $("shopRows").innerHTML=shops.filter(([id])=>shopStatus(id)!=="deleted").map(([id,name,alias,contact,platform,created,sales])=>{
+    const status=shopStatus(id);
+    const completion=summarize([getRecord(id).values]);
+    return `<tr>
+      <td><strong>${name}</strong><small>平台店铺ID: ${id}</small></td><td>${alias}</td><td>${contact}</td><td><span class="platform-badge">B</span>${platform}</td>
+      <td><span class="tag ${status==="active"?"live":""}">${statusLabels[status]}</span></td>
+      <td><small>商户ID: 90001</small><small>商户名: 演示客户</small><small>商户邮箱: —</small></td>
+      <td>${created}</td><td>${sales}</td><td><span class="agreement-cell">${statusTag(completion)}${actions(id)}</span></td></tr>`;
+  }).join("");
+}
+let session;
+let toastTimer;
+function notify(message) {
+  $("toast").textContent=message;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>$("toast").textContent="",3000);
+}
+const recommendedTag='<span class="recommend-tag">建议完善</span>';
+const fieldSpan={channel:2,confirm:2,trigger:2,cadence:2,hours:2,zone:1,holiday:1,rhythmNote:4,rules:4,credit:4,shippingNote:4,shippingFiles:4,note:4,noteFiles:4};
+const rhythmOrder=["channel","confirm","trigger","cadence","hours","zone","holiday","rhythmNote"];
+const spanClass=id=>"span-"+(fieldSpan[id]||1);
+function presentFields(module, values, editable) {
+  let list=module.fields;
+  if(module.name==="做单节奏") list=[...list].sort((a,b)=>rhythmOrder.indexOf(a[0])-rhythmOrder.indexOf(b[0]));
+  return editable?list:list.filter(([field])=>valid(values[field]));
+}
+function choices(name, options, selected, {part="",multiple=false}={}) {
+  const entries=options.map(option=>Array.isArray(option)?option:[option,option]);
+  for(const value of selected.filter(Boolean)) {
+    if(!entries.some(([key])=>key===value)) entries.push([value,value]);
+  }
+  return `<div class="choices">${entries.map(([value,label])=>`<label class="choice"><input type="${multiple?"checkbox":"radio"}" name="${name}" value="${esc(value)}" ${part?`data-part="${part}"`:""} ${selected.includes(value)?"checked":""}>${esc(label)}</label>`).join("")}${multiple?"":'<button type="button" data-clear-choice>清除</button>'}</div>`;
+}
+let ruleSequence=0;
+function ruleRow(rule={}) {
+  const name="rule-"+(++ruleSequence);
+  const ruleSpans={method:2,frequency:2,payment:4,shortage:2};
+  return `<article class="stock-card" data-rule><div class="line spread"><h4>备货约定 <span data-rule-number></span></h4><button type="button" class="text-danger" data-remove-rule aria-label="删除本条备货约定">删除</button></div>
+    <div class="fields"><div class="field span-4"><span class="label">适用 SKU / SPU${recommendedTag}</span>
+    ${choices(name+"-source",scopeOptions,[rule.source],{part:"source"})}
+    <div class="scope-inputs" data-manual ${rule.source==="manual"?"":"hidden"}><select data-part="type" aria-label="商品编码类型"><option>SKU</option><option ${rule.type==="SPU"?"selected":""}>SPU</option></select><input data-part="code" aria-label="商品编码" placeholder="输入 SKU / SPU 编码" maxlength="100" value="${esc(rule.code)}"></div>
+    <div data-library ${rule.source==="library"?"":"hidden"}><select data-part="product" aria-label="选择产品库商品"><option value="">请选择商品</option>${products.map(([type,code,label])=>`<option value="${code}" ${rule.code===code?"selected":""}>${type} · ${label} · ${code}</option>`).join("")}</select></div></div>
+    ${ruleOptions.map(([part,label,options,recommended])=>`<div class="field span-${ruleSpans[part]||2}"><span class="label">${label}${recommended?recommendedTag:"<small>选填</small>"}</span>${choices(name+"-"+part,options,[rule[part]],{part})}${part==="frequency"?`<label class="sub-field"><span class="label">频率补充说明</span><input data-part="frequencyNote" maxlength="200" placeholder="例如 每 2 天一次" value="${esc(rule.frequencyNote)}"></label>`:""}</div>`).join("")}
+    <label class="field span-4"><span class="label">补充说明</span><textarea data-part="note" rows="2" maxlength="1500" placeholder="填写本条备货约定的补充说明">${esc(rule.note)}</textarea></label></div></article>`;
+}
+function numberRules() {
+  $("ruleRows")?.querySelectorAll("[data-rule-number]").forEach((label,index)=>label.textContent="#"+(index+1));
+}
+function attachmentRows(field) {
+  const editable=session.mode==="edit" && canEdit(session.id);
+  return (session.values[field]||[]).map((file,i)=>`<div class="attachment-row">${attachmentLink(file)}${editable?`<button type="button" data-remove-file="${field}" data-index="${i}">移除</button>`:""}</div>`).join("");
+}
+function formField([id,label,type,recommended,hint], values, readonly) {
+  const value=values[id];
+  const disabled=readonly?"disabled":"";
+  const attrs=`id="f-${id}" name="${id}" ${disabled}`;
+  const span=spanClass(id);
+  if (type==="files") return `<div class="field ${span}"><span class="label">${label}</span><div class="attachment-list" id="list-${id}">${attachmentRows(id)}</div>${readonly?(valid(value)?"":"<small>未填写</small>"):`<label class="upload-btn">选择文件<input type="file" multiple data-attach="${id}" aria-label="${label}"></label><small>每份约定的附件合计最多 2 MB。</small>`}</div>`;
+  if (type==="rules") return `<div class="field ${span}"><span class="label">${label}</span><div id="ruleRows">${(valid(value)?value:[{}]).map(ruleRow).join("")}</div></div>`;
+  if (Array.isArray(type)) {
+    const selected=id==="channel"?(Array.isArray(value)?value:[value]):[value];
+    return `<div class="field ${span}"><span class="label">${label}${recommended?recommendedTag:""}</span>${choices(id,type,selected,{multiple:id==="channel"})}</div>`;
+  }
+  if(type==="hours") return `<div class="field ${span}"><span class="label">${label}${recommendedTag}</span>${choices("hoursMode",["全天","指定时段"],[value==="全天"?"全天":value?"指定时段":""])}<input id="f-hours" name="hours" aria-label="指定做单时段" maxlength="200" placeholder="例如 北京时间 09:00–18:00" value="${value==="全天"?"":esc(value)}" ${value&&value!=="全天"?"":"hidden"}></div>`;
+  let control;
+  if(type==="area") control=`<textarea ${attrs} rows="2" maxlength="1500" placeholder="${esc(hint||"请输入")}">${esc(value)}</textarea>`;
+  else control=`<input ${attrs} maxlength="200" placeholder="${esc(hint||"请输入")}" value="${esc(value)}">`;
+  return `<label class="field ${span}" for="f-${id}"><span class="label">${label}${recommended?recommendedTag:""}</span>${control}${id==="credit"?"<small>选填，仅记录交付执行约定，与财务账期无关联。字段归属待业务确认。</small>":""}</label>`;
+}
+function readOnlyField([id,label,type], value) {
+  let content=esc(value);
+  if (type==="files") content=`<ul>${value.map(file=>`<li>${attachmentLink(file)}</li>`).join("")}</ul>`;
+  if (Array.isArray(value)&&type!=="files"&&type!=="rules") content=esc(value.join("、"));
+  if (type==="rules") {
+    content=`<div class="rule-list">${value.map((rule,i)=>{
+      const product=products.find(([,code])=>code===rule.code);
+      const item=rule.source==="all"?"全店铺":rule.code?[rule.type,rule.code,rule.source==="library"?product?.[2]:""].filter(Boolean).join(" "):"";
+      const rows=[["适用 SKU / SPU",item,4],...ruleOptions.map(([part,name])=>[name,rule[part],part==="payment"?4:2]),["频率补充说明",rule.frequencyNote,2],["补充说明",rule.note,4]];
+      return `<article class="stock-card"><h4>备货约定 #${i+1}</h4><div class="fields">${rows.filter(([,text])=>valid(text)).map(([name,text,span])=>`<div class="field span-${span}"><span class="label">${name}</span><div class="readonly-value">${esc(text)}</div></div>`).join("")}</div></article>`;
+    }).join("")}</div>`;
+    return `<div class="field span-4"><span class="label">${label}</span>${content}</div>`;
+  }
+  return `<div class="field ${spanClass(id)}"><span class="label">${label}</span><div class="readonly-value">${content}</div></div>`;
+}
+function completionText(metric) {
+  return `已完善 ${metric.percent}%（${metric.count}/${suggested.length}）`;
+}
+function shopBrief(shop, id, metric) {
+  const items=[["商户名称","演示客户"],["商户 ID",merchantId],["店铺名称",shop[1]],["店铺 ID",id],["当前店铺完善度",completionText(metric),"shopCompletion"]];
+  $("shopBrief").innerHTML=items.map(([label,value,nodeId])=>`<div><dt>${label}</dt><dd${nodeId?` id="${nodeId}"`:""}>${esc(value)}</dd></div>`).join("");
+}
+function drawForm() {
+  const {id,mode,values}=session;
+  const shop=shopInfo(id);
+  const editable=mode==="edit" && canEdit(id);
+  const saved=hasContent(getRecord(id).values);
+  $("modalTitle").textContent=editable?(saved?"编辑做单约定":"新增做单约定"):"查看做单约定详情";
+  const reason=state.merchantStatus!=="active" ? "商户"+statusLabels[state.merchantStatus] : shopStatus(id)!=="active" ? "店铺"+statusLabels[shopStatus(id)] : $("role").value==="viewer" ? "当前权限仅可查看" : "";
+  $("modalHint").textContent=editable?"标有「建议完善」的字段可分次保存。":reason?reason+"，约定只读。":"";
+  shopBrief(shop,id,summarize([values]));
+  $("modalRecord").textContent=history(id);
+  $("save").hidden=!editable;
+  $("applyAllWrap").hidden=!editable;
+  $("applyAll").checked=false;
+  $("editMode").hidden=editable||!canEdit(id);
+  $("cancel").textContent=editable?"取消":"关闭";
+  $("formError").textContent="";
+  const visible=modules.map((module,i)=>({...module,i,fields:presentFields(module,values,editable)})).filter(module=>module.fields.length);
+  $("agreementForm").innerHTML=visible.map(({name,i,fields})=>{
+    const body=editable
+      ? `<div class="fields">${fields.map(field=>formField(field,values,false)).join("")}</div>`
+      : `<div class="fields">${fields.map(field=>readOnlyField(field,values[field[0]])).join("")}</div>`;
+    const add=editable&&name==="备货与付款"?'<button type="button" class="text-btn" data-add-rule>＋ 添加备货约定</button>':"";
+    return `<section class="form-section" id="form-module-${i}"><div class="section-head"><h3>${name}${editable&&i>1?' <small>选填</small>':""}</h3>${add}</div>${body}</section>`;
+  }).join("")||'<p class="empty">该店铺暂无已维护的做单约定。</p>';
+  $("agreementForm").scrollTop=0;
+  if (editable) numberRules();
+  refreshDraft();
+  $("save").disabled=false;
+}
+function readForm() {
+  const values={};
+  const form=$("agreementForm");
+  for(const field of fields) {
+    if(field[0]==="channel") {
+      const selected=[...form.querySelectorAll('input[name="channel"]:checked')].map(control=>control.value);
+      if (selected.length) values.channel=selected.length===1?selected[0]:selected;
+      continue;
+    }
+    if(field[0]==="hours"&&form.querySelector('input[name="hoursMode"]:checked')?.value==="全天") {
+      values.hours="全天";
+      continue;
+    }
+    const control=form.elements.namedItem(field[0]);
+    if (control && !control.hidden && valid(control.value)) values[field[0]]=control.value.trim();
+  }
+  for(const field of ["shippingFiles","noteFiles"]) {
+    if(valid(session.values[field])) values[field]=session.values[field];
+  }
+  const rules=[...form.querySelectorAll("[data-rule]")].map(row=>{
+    const parts=Object.fromEntries([...row.querySelectorAll("[data-part]")].filter(control=>control.type!=="radio"||control.checked).map(control=>[control.dataset.part,control.value.trim()]));
+    const {source="",method="",payment="",frequency="",frequencyNote="",shortage="",note=""}=parts;
+    const product=products.find(([,code])=>code===parts.product);
+    const code=source==="library"?product?.[1]||"":source==="manual"?parts.code:"";
+    const type=code?(source==="library"?product[0]:parts.type):"";
+    return {source,type,code,method,payment,frequency,frequencyNote,shortage,note};
+  }).filter(rule=>rule.source==="all"||[rule.code,rule.method,rule.payment,rule.frequency,rule.frequencyNote,rule.shortage,rule.note].some(valid));
+  if (rules.length) values.rules=rules;
+  return {values,incomplete:false};
+}
+function refreshDraft() {
+  if(!$("shopCompletion")) return;
+  const values=session.mode==="edit"&&canEdit(session.id)?readForm().values:session.values;
+  $("shopCompletion").textContent=completionText(summarize([values]));
+}
+function openForm(id,mode,trigger) {
+  if (!shopInfo(id)) return;
+  if (!canEdit(id)) mode="view";
+  session={id,mode,trigger,pending:0,values:structuredClone(getRecord(id).values)};
+  drawForm();
+  $("dialog").showModal();
+  document.body.classList.add("modal-open");
+}
+function isDirty() {
+  if (session.mode!=="edit" || !canEdit(session.id)) return false;
+  const {values,incomplete}=readForm();
+  const original=getRecord(session.id).values;
+  return $("applyAll").checked || session.pending>0 || incomplete || [...new Set([...Object.keys(values),...Object.keys(original)])].some(k=>JSON.stringify(values[k])!==JSON.stringify(original[k]));
+}
+function discardApproved() {
+  return !isDirty() || window.confirm("当前有未保存的修改，是否放弃？");
+}
+function requestClose() { if(discardApproved()) $("dialog").close(); }
+$("dialog").addEventListener("close",()=>{
+  document.body.classList.remove("modal-open");
+  if (session.trigger?.isConnected) session.trigger.focus({preventScroll:true});
+});
+$("dialog").addEventListener("cancel",event=>{event.preventDefault();requestClose();});
+$("close").onclick=requestClose;
+function switchMode(mode) {
+  session.mode=mode;
+  session.values=structuredClone(getRecord(session.id).values);
+  drawForm();
+  $(mode==="edit"?"cancel":canEdit(session.id)?"editMode":"close").focus({preventScroll:true});
+}
+$("editMode").onclick=()=>{
+  if(canEdit(session.id)) switchMode("edit");
+};
+$("cancel").onclick=()=>{
+  if (session.mode==="view") requestClose();
+  else if (discardApproved()) switchMode("view");
+};
+$("agreementForm").addEventListener("input",()=>{
+  $("formError").textContent="";
+  refreshDraft();
+});
+function readAttachment(file) {
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve({name:file.name,size:file.size,url:"data:application/octet-stream;base64,"+String(reader.result).split(",")[1]});
+    reader.onerror=reader.onabort=reject;
+    reader.readAsDataURL(file);
+  });
+}
+$("agreementForm").addEventListener("change",async event=>{
+  const {target}=event;
+  if (target.name==="hoursMode") {
+    $("f-hours").hidden=target.value!=="指定时段";
+    refreshDraft();
+    return;
+  }
+  if (target.matches('[data-part="source"]')) {
+    const row=target.closest("[data-rule]");
+    row.querySelector("[data-manual]").hidden=target.value!=="manual";
+    row.querySelector("[data-library]").hidden=target.value!=="library";
+    refreshDraft();
+    return;
+  }
+  const field=target.dataset.attach;
+  if(!field || !target.files.length || session.pending) return;
+  const files=[...target.files];
+  target.value="";
+  const current=session;
+  const size=["shippingFiles","noteFiles"].flatMap(name=>current.values[name]||[]).concat(files).reduce((sum,file)=>sum+file.size,0);
+  if(size>attachmentLimit) {
+    $("formError").textContent="附件总大小超过 2 MB，请选择较小的文件。";
+    return;
+  }
+  current.pending++;
+  $("save").disabled=true;
+  for(const input of $("agreementForm").querySelectorAll("[data-attach]")) input.disabled=true;
+  try {
+    const loaded=await Promise.all(files.map(readAttachment));
+    if(session!==current||!$("dialog").open) return;
+    current.values[field]=[...(current.values[field]||[]),...loaded];
+    $("list-"+field).innerHTML=attachmentRows(field);
+    refreshDraft();
+  } catch {
+    if(session===current&&$("dialog").open) $("formError").textContent="附件读取失败，请重新选择文件。";
+  } finally {
+    current.pending--;
+    if(session===current) {
+      $("save").disabled=false;
+      for(const input of $("agreementForm").querySelectorAll("[data-attach]")) input.disabled=false;
+    }
+  }
+});
+$("agreementForm").addEventListener("click",event=>{
+  if (session.mode!=="edit" || !canEdit(session.id)) return;
+  const clear=event.target.closest("[data-clear-choice]");
+  if(clear) {
+    const selected=clear.parentElement.querySelector("input:checked");
+    if(!selected) return;
+    selected.checked=false;
+    if(selected.name==="hoursMode") $("f-hours").hidden=true;
+    if(selected.dataset.part==="source") {
+      const card=selected.closest("[data-rule]");
+      card.querySelector("[data-manual]").hidden=true;
+      card.querySelector("[data-library]").hidden=true;
+    }
+    refreshDraft();
+    return;
+  }
+  if (event.target.closest("[data-add-rule]")) {
+    $("ruleRows").insertAdjacentHTML("beforeend",ruleRow());
+    numberRules();
+    $("ruleRows").lastElementChild.querySelector("input").focus();
+  }
+  const file=event.target.closest("[data-remove-file]");
+  if(file) {
+    const field=file.dataset.removeFile;
+    session.values[field].splice(Number(file.dataset.index),1);
+    $("list-"+field).innerHTML=attachmentRows(field);
+    $("formError").textContent="";
+    refreshDraft();
+  }
+  const remove=event.target.closest("[data-remove-rule]");
+  if(remove) {remove.closest("[data-rule]").remove();numberRules();$("formError").textContent="";refreshDraft();}
+});
+$("agreementForm").onsubmit=event=>{
+  event.preventDefault();
+  if(session.mode!=="edit"||!canEdit(session.id)||session.pending)return;
+  const {values,incomplete}=readForm();
+  const recordId=recordKey(session.id);
+  const previous=state.records;
+  const bulk=$("applyAll").checked;
+  const clearingShop=!bulk&&hasContent(previous[recordId]?.values||{})&&!incomplete;
+  if(!hasContent(values)&&!clearingShop) {
+    $("formError").textContent="请填写至少一项有效约定。";
+    return;
+  }
+  const when=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Shanghai",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).format(new Date());
+  const id=session.id;
+  const targets=bulk?shops.filter(([shopId])=>canEdit(shopId)).map(([shopId])=>shopId):[id];
+  if (bulk && !window.confirm(`将已填写字段应用到同一商户的 ${targets.length} 家启用店铺？其他店铺的同名字段会更新，未填写字段保留。`)) return;
+  const next={...previous};
+  for(const target of targets) {
+    const targetKey=recordKey(target);
+    const savedValues=target===id?values:{...getRecord(target).values,...values};
+    const bytes=["shippingFiles","noteFiles"].flatMap(field=>savedValues[field]||[]).reduce((sum,file)=>sum+file.size,0);
+    if (bytes>attachmentLimit) {
+      $("formError").textContent=`${shopInfo(target)[1]} 的附件合计超过 2 MB，本次未保存。`;
+      return;
+    }
+    next[targetKey]={values:savedValues,who:"交付人员 A",when};
+  }
+  state.records=next;
+  if(!persist()) {
+    state.records=previous;
+    $("formError").textContent="浏览器无法保存记录。请检查本地存储是否可用，或减少附件后重试。";
+    return;
+  }
+  render();
+  session.trigger=document.querySelector(`[data-open="${id}"][data-mode="${session.trigger?.dataset.mode || "view"}"]`);
+  switchMode("view");
+  notify((bulk?`已应用到 ${targets.length} 家店铺`:hasContent(values)?"约定已保存":"店铺约定已清空")+(incomplete?"，未完整的商品规则已略过":""));
+};
+document.querySelector("main").addEventListener("click",event=>{
+  const button=event.target.closest("[data-open]");
+  if(button) openForm(button.dataset.open,button.dataset.mode,button);
+});
+const crmTabs=["概览","账户与映射","组织与KA","账期","资金","转介绍与佣金","店铺与履约","订单","客户动态","周报记录"];
+const crmContext=[
+  [["客户ID","90001"],["客户名称","演示客户"],["全局客户","g_demo_001"],["代发币种","USD"]],
+  [["客户ID","90001"],["所属全局客户","g_demo_001"],["关联应用","Bps"]],
+  [["业务经理","演示业务经理"],["业务组","演示业务组"],["业务助理","—"]],
+  [["账期状态","—"],["时间账期","—"],["额度账期","—"],["备货账期","—"]],
+  [["币种","USD"],["可用余额","—"],["冻结金额","—"]],
+  [["介绍人","—"],["佣金规则","—"]],
+  [],
+  [["订单量","—"],["销售额","—"]],
+  [["客户动态","暂无演示记录"]],
+  [["周报记录","暂无演示记录"]]
+];
+let selectedTab=6;
+function drawTabs() {
+  $("crmTabs").innerHTML=crmTabs.map((label,i)=>`<button id="crm-tab-${i}" role="tab" aria-selected="${i===selectedTab}" aria-controls="${i===6?"fulfillment":"crmContext"}" tabindex="${i===selectedTab?0:-1}" data-tab="${i}">${label}</button>`).join("");
+  $("fulfillment").hidden=selectedTab!==6;
+  $("crmContext").hidden=selectedTab===6;
+  $("crmContext").setAttribute("aria-labelledby","crm-tab-"+selectedTab);
+  if(selectedTab!==6) $("crmContext").innerHTML=`<h2>${crmTabs[selectedTab]}</h2><dl class="context-data">${crmContext[selectedTab].map(([label,value])=>`<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>`;
+}
+function selectTab(index) {
+  selectedTab=index;
+  drawTabs();
+  window.scrollTo({top:0,behavior:"instant"});
+  $("crm-tab-"+index).focus({preventScroll:true});
+}
+$("crmTabs").onclick=event=>{
+  const tab=event.target.closest("[data-tab]");
+  if(tab) selectTab(Number(tab.dataset.tab));
+};
+$("crmTabs").onkeydown=event=>{
+  const offset={ArrowRight:1,ArrowLeft:-1}[event.key];
+  if(!offset && !["Home","End"].includes(event.key)) return;
+  event.preventDefault();
+  selectTab(event.key==="Home"?0:event.key==="End"?9:(selectedTab+offset+crmTabs.length)%crmTabs.length);
+};
+document.querySelector(".crm-dimension").onclick=event=>{
+  const button=event.target.closest("[data-dimension]");
+  if(!button)return;
+  const global=button.dataset.dimension==="global";
+  for(const item of document.querySelectorAll("[data-dimension]")) item.setAttribute("aria-pressed",String(item===button));
+  $("profileName").textContent=global?"g_demo_001":"演示客户";
+  $("profileIds").innerHTML=global?"<small>全局客户</small> <b>g_demo_001</b>　<small>关联客户ID</small> <b>90001</b>":"<small>客户ID</small> <b>90001</b>　 <small>所属全局客户</small> <b>g_demo_001</b>";
+};
+for(const item of document.querySelectorAll("[data-icon]")) item.innerHTML=icon(item.dataset.icon);
+$("role").onchange=render;
+drawTabs();
+render();
+</script>
+</html>
