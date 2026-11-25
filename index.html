@@ -328,15 +328,15 @@ dialog.drawer{position:fixed;inset:0 0 0 auto;margin:0;width:min(1100px,100vw);h
   <div><span data-icon="box"></span>Oms</div><div><span data-icon="fund"></span>Fund</div><div><span data-icon="tune"></span>BPS</div>
 </aside>
 <header class="crm-head line spread">
-  <div>CRM　›　客户治理　›　客户360</div>
+  <div>CRM　›　客户治理　›　客户360 · 虚构数据演示</div>
   <label>演示权限 <select id="role"><option value="delivery">交付人员 A · 可维护</option><option value="viewer">授权人员 · 仅查看</option></select></label>
 </header>
 <div class="worktabs" aria-label="工作页签"><span>▦ 工作台 <small>×</small></span><span>⌂ 全部客户 <small>×</small></span><span>↪ 客户360 <small>×</small></span><span class="current" aria-current="page">↪ 客户360 <small>×</small></span></div>
 <main>
   <div class="crm-dimension line">当前维度 <div class="seg" aria-label="当前维度"><button data-dimension="global" aria-pressed="false">全局客户</button><button data-dimension="id" aria-pressed="true">客户ID</button></div></div>
   <div class="crm-profile">
-    <h1 id="profileName">Samuel</h1><p id="profileIds"><small>客户ID</small> <b>13896</b>　 <small>所属全局客户</small> <b>g_03688</b></p>
-    <dl><div><dt>客户编码</dt><dd>1001833-LF</dd></div><div><dt>业务经理</dt><dd>林美华</dd></div><div><dt>业务组</dt><dd>鸿鹄组（原卢芳组）</dd></div><div><dt>业务助理</dt><dd>—</dd></div></dl>
+    <h1 id="profileName">演示客户</h1><p id="profileIds"><small>客户ID</small> <b>90001</b>　 <small>所属全局客户</small> <b>g_demo_001</b></p>
+    <dl><div><dt>客户编码</dt><dd>DEMO-001</dd></div><div><dt>业务经理</dt><dd>演示业务经理</dd></div><div><dt>业务组</dt><dd>演示业务组</dd></div><div><dt>业务助理</dt><dd>—</dd></div></dl>
   </div>
   <nav id="crmTabs" class="crm-tabs" role="tablist" aria-label="客户360"></nav>
   <div id="crmContext" class="card" role="tabpanel" hidden></div>
@@ -430,13 +430,13 @@ const supplements = {
   accountType:[["accountDays","自定义天数","补充说明自定义天数，如 15 天","自定义天数"]]
 };
 const shops = [
-  ["651700","mhwzht-jr","Samuel LUF","—","Bps","2026-11-02","销售 A"],
-  ["651701","76mcz2-ii","Samuel Main LUF","—","Bps","2026-08-24","销售 A"],
-  ["651702","0jjh1a-8s","Samuel US LUF","—","Bps","2026-05-22","销售 B"],
-  ["651703","2dx5cr-sb","Samuel UK LUF","—","Bps","2026-07-07","销售 B"],
-  ["651704","7gn7ki-k5","Samuel EU LUF","—","Bps","2026-03-17","销售 A"],
-  ["651705","hh0026-d1","Samuel CA LUF","—","Bps","2026-05-04","销售 B"],
-  ["651707","7gn7ki-k5","Samuel Outlet","—","Bps","2025-11-29","—"]
+  ["91001","demo-shop-1","示例店铺 1","—","Bps","2025-01-01","销售 A"],
+  ["91002","demo-shop-2","示例店铺 2","—","Bps","2025-01-02","销售 A"],
+  ["91003","demo-shop-3","示例店铺 3","—","Bps","2025-01-03","销售 B"],
+  ["91004","demo-shop-4","示例店铺 4","—","Bps","2025-01-04","销售 B"],
+  ["91005","demo-shop-5","示例店铺 5","—","Bps","2025-01-05","销售 A"],
+  ["91006","demo-shop-6","示例店铺 6","—","Bps","2025-01-06","销售 B"],
+  ["91007","demo-shop-7","示例店铺 7","—","Bps","2025-01-07","—"]
 ];
 const products = [
   ["SKU","BF-SKU-1001","帆布收纳袋"],["SKU","BF-SKU-1002","旅行收纳盒"],
@@ -453,14 +453,14 @@ const iconPaths = {
   tune:'<path d="M5 3v4m0 5v9m7-18v9m0 5v4m7-18v3m0 5v10M3 7h4v5H3zm7 5h4v5h-4zm7-6h4v5h-4z"/>'
 };
 const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true" class="icon-stroke">${iconPaths[name]}</svg>`;
-const merchantId = "13896";
+const merchantId = "90001";
 const businessType = "BPS";
 const recordKey = id => [merchantId,id,businessType].join(":");
 const initial = {
-  merchantStatus:"active",shopStatus:{"651707":"disabled"},records:{
-    [recordKey("651701")]:{values:{trigger:"客户通知后做",stock:"客户自备货"},who:"交付人员 B",when:"2026-11-24 14:20"},
-    [recordKey("651703")]:{values:{dispatch:"确认后 48 小时内发货"},who:"交付人员 A",when:"2026-11-24 15:30"},
-    [recordKey("651707")]:{values:{payment:"预付",packing:"订单需使用无标识包装。"},who:"交付人员 B",when:"2026-11-20 11:10"}
+  merchantStatus:"active",shopStatus:{"91007":"disabled"},records:{
+    [recordKey("91002")]:{values:{trigger:"客户通知后做",stock:"客户自备货"},who:"交付人员 B",when:"2025-01-08 14:20"},
+    [recordKey("91004")]:{values:{dispatch:"示例：确认后两个工作日发货"},who:"交付人员 A",when:"2025-01-08 15:30"},
+    [recordKey("91007")]:{values:{payment:"预付",packing:"示例：使用标准纸箱。"},who:"交付人员 B",when:"2025-01-08 11:10"}
   }
 };
 const key = "bff-crm-customer360-agreement-v4.3-aligned";
@@ -485,7 +485,7 @@ try {
 const fields = modules.flatMap(module => module.fields);
 const suggested = [...fields.filter(field=>field[3]).map(field=>field[0]),"scope","stock","payment"];
 const scopeOptions=[["manual","手工输入 SKU / SPU"],["library","从产品库选择"],["all","全店铺"]];
-const stockOptions=["灏仟亿备货","代客户备货","客户自备货"];
+const stockOptions=["演示供应商备货","代客户备货","客户自备货"];
 const paymentOptions=["公司买货","提前全额付款","分期按比例付","分批随履约单付","客户买货"];
 const ruleOptions=[
   ["method","备货方式",stockOptions,true],
@@ -521,7 +521,7 @@ function getRecord(id) {
     cards.unshift({source:all?"all":scope?"manual":"",type:scope&&!all?"SKU":"",code:scope&&!all?scope:"",method:stock,payment});
   }
   if(cards.length) values.rules=cards.map(({source="",type="",code="",productName="",method="",payment="",frequency="",frequencyNote="",shortage="",note="",files=[]})=>({
-    source,type:code?type:"",code,productName:productName||lookupProductName(code),method:method==="瀚仟亿备货"?"灏仟亿备货":method,payment,frequency,frequencyNote,shortage,note,files
+    source,type:code?type:"",code,productName:productName||lookupProductName(code),method:method==="瀚仟亿备货"?"演示供应商备货":method,payment,frequency,frequencyNote,shortage,note,files
   }));
   return {...record,values};
 }
@@ -597,7 +597,7 @@ function render() {
     return `<tr>
       <td><strong>${name}</strong><small>平台店铺ID: ${id}</small></td><td>${alias}</td><td>${contact}</td><td><span class="platform-badge">B</span>${platform}</td>
       <td><span class="tag ${status==="active"?"live":""}">${statusLabels[status]}</span></td>
-      <td><small>商户ID: 13896</small><small>商户名: Samuel</small><small>商户邮箱: —</small></td>
+      <td><small>商户ID: 90001</small><small>商户名: 演示客户</small><small>商户邮箱: —</small></td>
       <td>${created}</td><td>${sales}</td><td><span class="agreement-cell">${statusTag(completion)}${actions(id)}</span></td></tr>`;
   }).join("");
 }
@@ -757,7 +757,7 @@ function readOnlyField([id,label,type],values) {
   return detailRow(label,main,notes,type==="area"||["channel","hours","confirm"].includes(id));
 }
 function shopBrief(shop) {
-  const items=[["商户名称","Samuel"],["商户 ID",merchantId],["店铺名称",shop[1]],["店铺 ID",shop[0]]];
+  const items=[["商户名称","演示客户"],["商户 ID",merchantId],["店铺名称",shop[1]],["店铺 ID",shop[0]]];
   $("shopBrief").innerHTML=items.map(([label,value])=>`<div class="summary-item"><span>${label}</span><strong>${esc(value)}</strong></div>`).join("")+`<div class="progress-info"><div class="progress-top"><span>当前店铺完善度</span><strong id="shopPercent">0%</strong><em id="shopCount">0/8 项已完善</em></div><div class="progress-track"><i id="shopBar"></i></div></div>`;
 }
 function drawForm() {
@@ -1058,9 +1058,9 @@ document.querySelector("main").addEventListener("click",event=>{
 });
 const crmTabs=["概览","账户与映射","组织与KA","账期","资金","转介绍与佣金","店铺与履约","订单","客户动态","周报记录"];
 const crmContext=[
-  [["客户ID","13896"],["客户名称","Samuel"],["全局客户","g_03688"],["代发币种","USD"]],
-  [["客户ID","13896"],["所属全局客户","g_03688"],["关联应用","Bps"]],
-  [["业务经理","林美华"],["业务组","鸿鹄组（原卢芳组）"],["业务助理","—"]],
+  [["客户ID","90001"],["客户名称","演示客户"],["全局客户","g_demo_001"],["代发币种","USD"]],
+  [["客户ID","90001"],["所属全局客户","g_demo_001"],["关联应用","Bps"]],
+  [["业务经理","演示业务经理"],["业务组","演示业务组"],["业务助理","—"]],
   [["账期状态","—"],["时间账期","—"],["额度账期","—"],["备货账期","—"]],
   [["币种","USD"],["可用余额","—"],["冻结金额","—"]],
   [["介绍人","—"],["佣金规则","—"]],
@@ -1098,8 +1098,8 @@ document.querySelector(".crm-dimension").onclick=event=>{
   if(!button)return;
   const global=button.dataset.dimension==="global";
   for(const item of document.querySelectorAll("[data-dimension]")) item.setAttribute("aria-pressed",String(item===button));
-  $("profileName").textContent=global?"g_03688":"Samuel";
-  $("profileIds").innerHTML=global?"<small>全局客户</small> <b>g_03688</b>　<small>关联客户ID</small> <b>13896</b>":"<small>客户ID</small> <b>13896</b>　 <small>所属全局客户</small> <b>g_03688</b>";
+  $("profileName").textContent=global?"g_demo_001":"演示客户";
+  $("profileIds").innerHTML=global?"<small>全局客户</small> <b>g_demo_001</b>　<small>关联客户ID</small> <b>90001</b>":"<small>客户ID</small> <b>90001</b>　 <small>所属全局客户</small> <b>g_demo_001</b>";
 };
 for(const item of document.querySelectorAll("[data-icon]")) item.innerHTML=icon(item.dataset.icon);
 $("role").onchange=render;
